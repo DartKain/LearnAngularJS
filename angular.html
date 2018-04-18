@@ -91,30 +91,30 @@
               <th data-type="number">
                 <a href="#" ng-click="vm.sortType = 'number'; vm.sortOrder = !vm.sortOrder">Номер
                 <span ng-show="vm.sortType == 'number' && vm.sortOrder" class="fa fa-caret-down"></span>
-                <span ng-show="vm.sortType == 'number' && !vm.sortOrder" class="fa fa-caret-up"></span>
+                <span ng-show="vm.sortType == 'number' && vm.sortOrder" class="fa fa-caret-up"></span>
                 </a>
               </th>
               <th data-type="string">
                 <a href="#" ng-click="vm.sortType = 'customer'; vm.sortOrder = !vm.sortOrder">Покупатель
-                <span ng-show="sortType == 'customer' && !sortReverse" class="fa fa-caret-down"></span>
-                <span ng-show="sortType == 'customer' && sortReverse" class="fa fa-caret-up"></span>
+                <span ng-show="vm.sortType == 'customer' && vm.sortOrder" class="fa fa-caret-down"></span>
+                <span ng-show="vm.sortType == 'customer' && !vm.sortOrder" class="fa fa-caret-up"></span>
                 </a></th>
               <th data-type="string">
                 <a href="#" ng-click="vm.sortType = 'manager'; vm.sortOrder = !vm.sortOrder">Менеджер
-              <span ng-show="sortType == 'manager' && !sortReverse" class="fa fa-caret-down"></span>
-                <span ng-show="sortType == 'manager' && sortReverse" class="fa fa-caret-up"></span>
+              <span ng-show="vm.sortType == 'manager' && vm.sortOrder" class="fa fa-caret-down"></span>
+                <span ng-show="vm.sortType == 'manager' && !vm.sortOrder" class="fa fa-caret-up"></span>
                 </a></th>
               <th data-type="string">
                 <a href="#" ng-click="vm.sortType = 'status'; vm.sortOrder = !vm.sortOrder">
               Статус заказа
-              <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
-                <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>
+              <span ng-show="vm.sortType == 'status' && vm.sortOrder" class="fa fa-caret-down"></span>
+                <span ng-show="vm.sortType == 'status' && !vm.sortOrder" class="fa fa-caret-up"></span>
                 </a></th>
               <th data-type="number">
                 <a href="#" ng-click="vm.sortType = 'summ'; vm.sortOrder = !vm.sortOrder">
               Сумма
-              <span ng-show="sortType == 'summ' && !sortReverse" class="fa fa-caret-down"></span>
-                <span ng-show="sortType == 'summ' && sortReverse" class="fa fa-caret-up"></span>
+              <span ng-show="vm.sortType == 'summ' && vm.sortOrder" class="fa fa-caret-down"></span>
+                <span ng-show="vm.sortType == 'summ' && !vm.sortOrder" class="fa fa-caret-up"></span>
                 </a></th>
             </tr>
             <tr></tr>
@@ -122,10 +122,27 @@
           </thead>
           <tbody id="test-body">
             <tr ng-repeat="order in vm.orders | orderBy:vm.sortType:vm.sortOrder">
-              <td>{{order.number}}</td>
-              <td>{{order.customer}}</td>
-              <td>{{order.manager}}</td>
-              <td>{{order.status}}</td>
+              <td>
+                <a href="#"  ng-click="vm.numberInput()" ng-hide="vm.numberInputHide">{{order.number}}</a>
+                <input class="form-control" ng-show = "vm.numberInputHide" type="number" ng-blur="vm.numberInputHide = false" ng-model="vm.order.number">
+              </td>
+              <td>
+                <a href="#"  ng-click="vm.customerInput()" ng-hide="vm.customerInputHide">{{order.customer}}</a>
+                <input class="form-control" ng-show = "vm.customerInputHide" type="text" ng-blur="vm.customerInputHide = false" ng-model="vm.order.customer">
+                </td>
+              <td>
+                <a href="#"  ng-click="vm.managerInput()" ng-hide="vm.managerInputHide">{{order.manager}}</a>
+                <input class="form-control" ng-show = "vm.managerInputHide" type="text" ng-blur="vm.managerInputHide = false" ng-model="vm.order.manager">
+              </td>
+              <td>
+                <a href="#"  ng-click="vm.statusInput()" ng-hide="vm.statusInputHide">{{order.status}}</a>
+                <select class="form-control" ng-show = "vm.statusInputHide" type="text" ng-blur="vm.statusInputHide = false" ng-model="vm.order.status">
+                  <option value="Выполнен">Выполнен</option>
+                  <option value="В обработке">В обработке</option>
+                  <option value="Отказ">Отказ</option>
+
+                </select>
+              </td>
               <td><a href="#"  ng-click="vm.summInput()" ng-hide="vm.summInputHide">{{order.summ}}</a><input class="form-control" ng-show = "vm.summInputHide" type="number" ng-blur="vm.summInputHide = false" ng-model="vm.order.summ"></td>
               <td><a href="#" ng-click="vm.openOrder(order)">Edit</a></td>
               <td><a href="#" ng-click="vm.remove(order)">Delete</a> </td>

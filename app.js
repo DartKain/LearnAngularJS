@@ -89,6 +89,26 @@ app.controller('sortController', ['$http', function ($http) {
     console.log("123");
     sort.summInputHide = true;
   };
+  //Появление Input панели в Номере
+  sort.numberInputHide = false;
+  sort.numberInput = function () {
+    sort.numberInputHide = true;
+  };
+  //Появление Input панели в Клиенте
+  sort.customerInputHide = false;
+  sort.customerInput = function () {
+    sort.customerInputHide = true;
+  };
+  //Появление Input панели в Менеджере
+  sort.managerInputHide = false;
+  sort.managerInput = function () {
+    sort.managerInputHide = true;
+  };
+  // Появление Select панели в статусе
+  sort.statusInputHide = false;
+  sort.statusInput = function () {
+  sort.statusInputHide = true;
+  };
   //Кнопка добавить/Изменить
   sort.addBtn = "Change";
 
