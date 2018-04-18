@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <title>Список заказов</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  <!-- Data Tables CSS-->
+  <!--Angular-->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+  <script src="app.js"></script>
+
+
+</head>
+
+<body ng-app="sortApp" ng-controller="sortController as vm">
+
+  <!-- Навигация -->
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <a href="#" class="navbar-brand">
+      <img src="http://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="logo" width="30px" height="30px">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Togglenavigation">
+        <span class="navbar-toggler-icon"></span>
+     </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a href="#" class="nav-link">Домой</a>
+        </li>
+        <li class="nav-item active">
+          <a href="#" class="nav-link">Заказы</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">О нас</a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+
+  <!--Навигация-->
+
+  <div class="container-fluid mt-5">
+    <div class="row">
+      <div class="col-md">
+
+        <!--       Кнопки Добавить/Удалить-->
+        <button type="button" class="btn btn-primary" id="button" ng-click="vm.add()">Добавить</button>
+
+
+        <!--       Кнопки Добавить/Удалить-->
+
+        <!--Форма для сортировки-->
+
+        <form id="sort-form" name="sort-form">
+          <div class="form-group">
+            <label for="sort-col">Выберите столбец для сортировки</label>
+            <select name="sort-col" id="sort-col" ng-model="vm.sortType">
+              <option ng-repeat = "col in vm.colType" >{{col.sortCol}}</option>
+
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="sort-order">Выберите порядок сортировки</label>
+            <select name="sort-order" id="sort-order" ng-model="vm.sortOrder">
+              <option value = false >По возрастанию</option>
+              <option value = true >По убыванию</option>
+            </select>
+          </div>
+        </form>
+        <div class="alert alert-info">
+          <p>Sorted Column: {{vm.sortType}}</p>
+          <p>Sort Order: {{vm.sortOrder}}</p>
+        </div>
+        <!--Форма для сортировки-->
+
+        <!-- Таблица -->
+
+        <table class="table table-responsive table-hover" id="test-table">
+          <caption>Список заказов</caption>
+
+          <thead class="table-header">
+            <tr>
+              <th data-type="number">
+                <a href="#" ng-click="vm.sortType = 'number'; vm.sortOrder = !vm.sortOrder">Номер
+                <span ng-show="vm.sortType == 'number' && vm.sortOrder" class="fa fa-caret-down"></span>
+                <span ng-show="vm.sortType == 'number' && !vm.sortOrder" class="fa fa-caret-up"></span>
+                </a>
+              </th>
+              <th data-type="string">
+                <a href="#" ng-click="vm.sortType = 'customer'; vm.sortOrder = !vm.sortOrder">Покупатель
+                <span ng-show="sortType == 'customer' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'customer' && sortReverse" class="fa fa-caret-up"></span>
+                </a></th>
+              <th data-type="string">
+                <a href="#" ng-click="vm.sortType = 'manager'; vm.sortOrder = !vm.sortOrder">Менеджер
+              <span ng-show="sortType == 'manager' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'manager' && sortReverse" class="fa fa-caret-up"></span>
+                </a></th>
+              <th data-type="string">
+                <a href="#" ng-click="vm.sortType = 'status'; vm.sortOrder = !vm.sortOrder">
+              Статус заказа
+              <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>
+                </a></th>
+              <th data-type="number">
+                <a href="#" ng-click="vm.sortType = 'summ'; vm.sortOrder = !vm.sortOrder">
+              Сумма
+              <span ng-show="sortType == 'summ' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'summ' && sortReverse" class="fa fa-caret-up"></span>
+                </a></th>
+            </tr>
+            <tr></tr>
+            <tr></tr>
+          </thead>
+          <tbody id="test-body">
+            <tr ng-repeat="order in vm.orders | orderBy:vm.sortType:vm.sortOrder">
+              <td>{{order.number}}</td>
+              <td>{{order.customer}}</td>
+              <td>{{order.manager}}</td>
+              <td>{{order.status}}</td>
+              <td><a href="#"  ng-click="vm.summInput()" ng-hide="vm.summInputHide">{{order.summ}}</a><input class="form-control" ng-show = "vm.summInputHide" type="number" ng-blur="vm.summInputHide = false" ng-model="vm.order.summ"></td>
+              <td><a href="#" ng-click="vm.openOrder(order)">Edit</a></td>
+              <td><a href="#" ng-click="vm.remove(order)">Delete</a> </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!--Таблица -->
+
+
+      </div>
+      <div class="col-md">
+        <div class="test-form" ng-show="vm.order">
+
+          <!--Форма для изменения таблицы-->
+
+          <form id="testForm" name="testForm">
+            <div class="form-group">
+              <label for="test-form-Number">Номер заказа</label>
+              <input type="number" class="form-control" ng-model="vm.order.number" id="test-form-Number" name="testFormNumber" placeholder="Номер заказа">
+            </div>
+            <div class="form-group">
+              <label for="test-form-Customer">Покупатель</label>
+              <input type="text" class="form-control" ng-model="vm.order.customer" id="test-form-Customer" placeholder="Покупатель">
+            </div>
+            <div class="form-group">
+              <label for="test-form-Manager">Менеджер</label>
+              <input type="text" class="form-control" ng-model="vm.order.manager" id="test-form-Manager" placeholder="Менеджер">
+            </div>
+            <div class="form-group">
+              <label for="test-form-Price">Статус заказа</label>
+              <input type="text" class="form-control" ng-model="vm.order.status" id="test-form-Status" placeholder="Статус заказа">
+            </div>
+            <div class="form-group">
+              <label for="test-form-Price">Сумма</label>
+              <input type="number" class="form-control" ng-model="vm.order.summ" id="test-form-Price" placeholder="Сумма">
+            </div>
+            <button type="button" class="btn btn-primary" id="button" ng-click="vm.saveEdited()">{{sort.addBtn}}</button>
+            <button type="button" class="btn btn-primary" id="button" ng-click="vm.cancel()">Отмена</button>
+          </form>
+
+          <!--Форма для изменения таблицы-->
+        </div>
+      </div>
