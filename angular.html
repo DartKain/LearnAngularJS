@@ -123,27 +123,27 @@
           <tbody id="test-body">
             <tr ng-repeat="order in vm.orders | orderBy:vm.sortType:vm.sortOrder">
               <td>
-                <a href="#"  ng-click="vm.numberInput()" ng-hide="vm.numberInputHide">{{order.number}}</a>
-                <input class="form-control" ng-show = "vm.numberInputHide" type="number" ng-blur="vm.numberInputHide = false" ng-model="vm.order.number">
+                <a href="#" ng-click="vm.numberInput()" ng-hide="vm.numberInputHide">{{order.number}}</a>
+                <input class="form-control" ng-show="vm.numberInputHide" type="number" ng-blur="vm.numberInputHide = false" ng-model="order.number">
               </td>
               <td>
-                <a href="#"  ng-click="vm.customerInput()" ng-hide="vm.customerInputHide">{{order.customer}}</a>
-                <input class="form-control" ng-show = "vm.customerInputHide" type="text" ng-blur="vm.customerInputHide = false" ng-model="vm.order.customer">
-                </td>
-              <td>
-                <a href="#"  ng-click="vm.managerInput()" ng-hide="vm.managerInputHide">{{order.manager}}</a>
-                <input class="form-control" ng-show = "vm.managerInputHide" type="text" ng-blur="vm.managerInputHide = false" ng-model="vm.order.manager">
+                <a href="#" ng-click="vm.customerInput()" ng-hide="vm.customerInputHide">{{order.customer}}</a>
+                <input class="form-control" ng-show="vm.customerInputHide" type="text" ng-blur="vm.customerInputHide = false" ng-model="order.customer">
               </td>
               <td>
-                <a href="#"  ng-click="vm.statusInput()" ng-hide="vm.statusInputHide">{{order.status}}</a>
-                <select class="form-control" ng-show = "vm.statusInputHide" type="text" ng-blur="vm.statusInputHide = false" ng-model="vm.order.status">
+                <a href="#" ng-click="vm.managerInput()" ng-hide="vm.managerInputHide">{{order.manager}}</a>
+                <input class="form-control" ng-show="vm.managerInputHide" type="text" ng-blur="vm.managerInputHide = false" ng-model="order.manager">
+              </td>
+              <td>
+                <a href="#" ng-click="vm.statusInput()" ng-hide="vm.statusInputHide">{{order.status}}</a>
+                <select class="form-control" ng-show="vm.statusInputHide" type="text" ng-blur="vm.statusInputHide = false" ng-model="order.status">
                   <option value="Выполнен">Выполнен</option>
                   <option value="В обработке">В обработке</option>
                   <option value="Отказ">Отказ</option>
 
                 </select>
               </td>
-              <td><a href="#"  ng-click="vm.summInput()" ng-hide="vm.summInputHide">{{order.summ}}</a><input class="form-control" ng-show = "vm.summInputHide" type="number" ng-blur="vm.summInputHide = false" ng-model="vm.order.summ"></td>
+              <td><a href="#" ng-click="vm.summInput()" ng-hide="vm.summInputHide">{{order.summ}}</a><input class="form-control" ng-show="vm.summInputHide" type="number" ng-blur="vm.summInputHide = false" ng-model="order.summ"></td>
               <td><a href="#" ng-click="vm.openOrder(order)">Edit</a></td>
               <td><a href="#" ng-click="vm.remove(order)">Delete</a> </td>
             </tr>
@@ -174,13 +174,17 @@
             </div>
             <div class="form-group">
               <label for="test-form-Price">Статус заказа</label>
-              <input type="text" class="form-control" ng-model="vm.order.status" id="test-form-Status" placeholder="Статус заказа">
+              <select class="form-control" id="test-form-Status" type="text" ng-model="vm.order.status" placeholder="Статус заказа">
+                  <option value="Выполнен">Выполнен</option>
+                  <option value="В обработке">В обработке</option>
+                  <option value="Отказ">Отказ</option>
+              </select>
             </div>
             <div class="form-group">
               <label for="test-form-Price">Сумма</label>
               <input type="number" class="form-control" ng-model="vm.order.summ" id="test-form-Price" placeholder="Сумма">
             </div>
-            <button type="button" class="btn btn-primary" id="button" ng-click="vm.saveEdited()">{{sort.addBtn}}</button>
+            <button type="button" class="btn btn-primary" id="button" ng-click="vm.saveEdited()">{{vm.addBtn}}</button>
             <button type="button" class="btn btn-primary" id="button" ng-click="vm.cancel()">Отмена</button>
           </form>
 

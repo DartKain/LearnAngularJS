@@ -55,7 +55,7 @@ app.controller('sortController', ['$http', function ($http) {
 
   sort.openOrder = function (order) {
     sort.order = order;
-    console.log("123");
+    sort.addBtn = "Изменить";
   };
   //Кнопка отмены
   sort.cancel = function () {
@@ -64,15 +64,10 @@ app.controller('sortController', ['$http', function ($http) {
   //Кнопка Добавить
   sort.add = function () {
     let order = {};
-    //sort.orders.push(order);
     sort.order = order;
-    if (sort.orders.id > 0) {
-      console.log("111");
+    sort.addBtn = "Добавить";
 
-      sort.addBtn = "Изменить";
-    } else {
-      sort.addBtn = "Добавить";
-    }
+
   };
   //Кнопка удалить
   sort.remove = function (order) {
@@ -92,7 +87,7 @@ app.controller('sortController', ['$http', function ($http) {
   //Появление Input панели в Номере
   sort.numberInputHide = false;
   sort.numberInput = function () {
-    sort.numberInputHide = true;
+  sort.numberInputHide = true;
   };
   //Появление Input панели в Клиенте
   sort.customerInputHide = false;
@@ -110,8 +105,11 @@ app.controller('sortController', ['$http', function ($http) {
   sort.statusInputHide = true;
   };
   //Кнопка добавить/Изменить
-  sort.addBtn = "Change";
+ sort.saveEdited = function (order) {
+   console.log ('54321');
+   sort.orders.push(order);
 
+ };
 
 
     }]);
