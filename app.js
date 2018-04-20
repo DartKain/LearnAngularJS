@@ -41,7 +41,7 @@ let type = [{
                  }]
 
 var app = angular.module('sortApp', [])
-app.controller('sortController', ['$http', function ($http) {
+app.controller('sortController', function () {
   var sort = this;
 
   sort.orders = data;
@@ -52,10 +52,13 @@ app.controller('sortController', ['$http', function ($http) {
   sort.sortType = 'number';
 
   sort.sortOrder = false;
+  sort.addbtn = false;
 
   sort.openOrder = function (order) {
     sort.order = order;
-    sort.addBtn = "Изменить";
+    sort.addbtn = false;
+    console.log (sort.addbtn);
+
   };
   //Кнопка отмены
   sort.cancel = function () {
@@ -63,9 +66,11 @@ app.controller('sortController', ['$http', function ($http) {
   };
   //Кнопка Добавить
   sort.add = function () {
-    let order = {};
-    sort.order = order;
-    sort.addBtn = "Добавить";
+    let neworder = {id:-1};
+    sort.order = neworder;
+    sort.addbtn = true;
+    console.log(neworder);
+    console.log (sort.addbtn);
 
 
   };
@@ -87,7 +92,8 @@ app.controller('sortController', ['$http', function ($http) {
   //Появление Input панели в Номере
   sort.numberInputHide = false;
   sort.numberInput = function () {
-  sort.numberInputHide = true;
+    sort.numberInputHide = true;
+
   };
   //Появление Input панели в Клиенте
   sort.customerInputHide = false;
@@ -105,11 +111,17 @@ app.controller('sortController', ['$http', function ($http) {
   sort.statusInputHide = true;
   };
   //Кнопка добавить/Изменить
- sort.saveEdited = function (order) {
-   console.log ('54321');
+  sort.saveEdited = function () {
+    let order = {};
+    order.number = sort.order.number;
+    order.customer = sort.order.customer;
+    order.manager = sort.order.manager;
+    order.status = sort.order.status;
+    order.summ = sort.order.summ;
+    console.log (order);
    sort.orders.push(order);
 
  };
 
 
-    }]);
+    });

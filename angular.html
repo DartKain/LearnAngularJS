@@ -91,7 +91,7 @@
               <th data-type="number">
                 <a href="#" ng-click="vm.sortType = 'number'; vm.sortOrder = !vm.sortOrder">Номер
                 <span ng-show="vm.sortType == 'number' && vm.sortOrder" class="fa fa-caret-down"></span>
-                <span ng-show="vm.sortType == 'number' && vm.sortOrder" class="fa fa-caret-up"></span>
+                <span ng-show="vm.sortType == 'number' && !vm.sortOrder" class="fa fa-caret-up"></span>
                 </a>
               </th>
               <th data-type="string">
@@ -123,7 +123,7 @@
           <tbody id="test-body">
             <tr ng-repeat="order in vm.orders | orderBy:vm.sortType:vm.sortOrder">
               <td>
-                <a href="#" ng-click="vm.numberInput()" ng-hide="vm.numberInputHide">{{order.number}}</a>
+                <a href="#" ng-click="vm.numberInput(order)" ng-hide="vm.numberInputHide">{{order.number}}</a>
                 <input class="form-control" ng-show="vm.numberInputHide" type="number" ng-blur="vm.numberInputHide = false" ng-model="order.number">
               </td>
               <td>
@@ -184,7 +184,8 @@
               <label for="test-form-Price">Сумма</label>
               <input type="number" class="form-control" ng-model="vm.order.summ" id="test-form-Price" placeholder="Сумма">
             </div>
-            <button type="button" class="btn btn-primary" id="button" ng-click="vm.saveEdited()">{{vm.addBtn}}</button>
+            <button type="submit" class="btn btn-primary" id="button" ng-click="vm.saveEdited()" ng-show="vm.addbtn">Добавить</button>
+            <button type="submit" class="btn btn-primary" id="button" ng-click="vm.cancel()" ng-hide = "vm.addbtn">Изменить</button>
             <button type="button" class="btn btn-primary" id="button" ng-click="vm.cancel()">Отмена</button>
           </form>
 
