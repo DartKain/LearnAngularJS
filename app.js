@@ -4,28 +4,32 @@ let data = [{
   customer: 'Иванова Ирина',
   manager: 'Петрова Полина',
   status: 'Выполнен',
-  summ: 1500
+  summ: 1500,
+  show: false
       }, {
   id: 2,
   number: 2,
   customer: 'Сидорова Алла',
   manager: 'Петрова Полина',
   status: 'В обработке',
-  summ: 11000
+  summ: 11000,
+        show: false
       }, {
   id: 3,
   number: 3,
   customer: 'Лукьянова Прасковья',
   manager: 'Смирнов Андрей',
   status: 'Отказ',
-  summ: 15020
+  summ: 15020,
+        show: false
       }, {
   id: 4,
   number: 4,
   customer: 'Гришин Сидор',
   manager: 'Смирнов Андрей',
   status: 'Выполнен',
-  summ: 4500
+  summ: 4500,
+        show: false
     }];
 
 let type = [{
@@ -48,8 +52,6 @@ app.controller('sortController', function () {
   sort.order = undefined;
 
   sort.colType = type;
-
-  sort.sortType = 'number';
 
   sort.sortOrder = false;
   sort.addbtn = false;
@@ -83,16 +85,12 @@ app.controller('sortController', function () {
     console.log(order);
   };
 
-  //Появление Input панели в Сумме
-  sort.summInputHide = false;
-  sort.summInput = function () {
-    console.log("123");
-    sort.summInputHide = true;
-  };
+
   //Появление Input панели в Номере
   sort.numberInputHide = false;
-  sort.numberInput = function () {
-    sort.numberInputHide = true;
+  sort.numberInput = function (index) {
+    sort.orders[index].show = true;
+    console.log(sort.orders[index].show);
 
   };
   //Появление Input панели в Клиенте
@@ -109,6 +107,12 @@ app.controller('sortController', function () {
   sort.statusInputHide = false;
   sort.statusInput = function () {
   sort.statusInputHide = true;
+  };
+   //Появление Input панели в Сумме
+  sort.summInputHide = false;
+  sort.summInput = function () {
+    console.log("123");
+    sort.summInputHide = true;
   };
   //Кнопка добавить/Изменить
   sort.saveEdited = function () {
