@@ -13,7 +13,7 @@ let data = [{
   manager: 'Петрова Полина',
   status: 'В обработке',
   summ: 11000,
-        show: false
+  show: false
       }, {
   id: 3,
   number: 3,
@@ -21,7 +21,7 @@ let data = [{
   manager: 'Смирнов Андрей',
   status: 'Отказ',
   summ: 15020,
-        show: false
+  show: false
       }, {
   id: 4,
   number: 4,
@@ -29,7 +29,7 @@ let data = [{
   manager: 'Смирнов Андрей',
   status: 'Выполнен',
   summ: 4500,
-        show: false
+  show: false
     }];
 
 let type = [{
@@ -59,7 +59,7 @@ app.controller('sortController', function () {
   sort.openOrder = function (order) {
     sort.order = order;
     sort.addbtn = false;
-    console.log (sort.addbtn);
+    console.log(sort.addbtn);
 
   };
   //Кнопка отмены
@@ -68,11 +68,13 @@ app.controller('sortController', function () {
   };
   //Кнопка Добавить
   sort.add = function () {
-    let neworder = {id:-1};
+    let neworder = {
+      id: -1
+    };
     sort.order = neworder;
     sort.addbtn = true;
     console.log(neworder);
-    console.log (sort.addbtn);
+    console.log(sort.addbtn);
 
 
   };
@@ -95,24 +97,23 @@ app.controller('sortController', function () {
   };
   //Появление Input панели в Клиенте
   sort.customerInputHide = false;
-  sort.customerInput = function () {
-    sort.customerInputHide = true;
+  sort.customerInput = function (index) {
+    sort.orders[index].show = true;
   };
   //Появление Input панели в Менеджере
   sort.managerInputHide = false;
-  sort.managerInput = function () {
-    sort.managerInputHide = true;
+  sort.managerInput = function (index) {
+   sort.orders[index].show = true;
   };
   // Появление Select панели в статусе
   sort.statusInputHide = false;
-  sort.statusInput = function () {
-  sort.statusInputHide = true;
+  sort.statusInput = function (index) {
+    sort.orders[index].show = true;
   };
-   //Появление Input панели в Сумме
+  //Появление Input панели в Сумме
   sort.summInputHide = false;
-  sort.summInput = function () {
-    console.log("123");
-    sort.summInputHide = true;
+  sort.summInput = function (index) {
+    sort.orders[index].show = true;
   };
   //Кнопка добавить/Изменить
   sort.saveEdited = function () {
@@ -122,10 +123,10 @@ app.controller('sortController', function () {
     order.manager = sort.order.manager;
     order.status = sort.order.status;
     order.summ = sort.order.summ;
-    console.log (order);
-   sort.orders.push(order);
+    console.log(order);
+    sort.orders.push(order);
 
- };
+  };
 
 
-    });
+});
