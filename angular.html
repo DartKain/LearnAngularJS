@@ -122,19 +122,19 @@
           </thead>
           <tbody id="test-body">
             <tr ng-repeat="order in vm.orders | orderBy:vm.sortType:vm.sortOrder">
-              <td ng-click="vm.numberInput($index)">
+              <td ng-click="vm.numberInput(order)">
                 <span ng-hide="order.show">{{order.number}}</span>
                 <input class="form-control" ng-show="order.show" type="number" ng-blur="order.show = false" ng-model="order.number">
               </td>
-              <td ng-click="vm.customerInput($index)">
+              <td ng-click="vm.customerInput(order)">
                 <span ng-hide="order.show">{{order.customer}}</span>
                 <input class="form-control" ng-show="order.show" type="text" ng-blur="order.show = false" ng-model="order.customer">
               </td>
-              <td ng-click="vm.managerInput($index)">
+              <td ng-click="vm.managerInput(order)">
                 <span ng-hide="order.show">{{order.manager}}</span>
                 <input class="form-control" ng-show="order.show" type="text" ng-blur="order.show = false" ng-model="order.manager">
               </td>
-              <td ng-click="vm.statusInput($index)">
+              <td ng-click="vm.statusInput(order)">
                 <span ng-hide="order.show">{{order.status}}</span>
                 <select class="form-control" ng-show="order.show" type="text" ng-blur="order.show = false" ng-model="order.status">
                   <option value="Выполнен">Выполнен</option>
@@ -143,7 +143,7 @@
 
                 </select>
               </td>
-              <td ng-click="vm.summInput($index)">
+              <td ng-click="vm.summInput(order)">
                 <span ng-hide="order.show">{{order.summ}}</span>
                 <input class="form-control" ng-show="order.show" type="number" ng-blur="order.show = false" ng-model="order.summ"></td>
               <td><a href="#" ng-click="vm.openOrder(order)">Edit</a></td>

@@ -90,29 +90,34 @@ app.controller('sortController', function () {
 
   //Появление Input панели в Номере
   sort.numberInputHide = false;
-  sort.numberInput = function (index) {
+  sort.numberInput = function (order) {
+    let index = order.id - 1;
     sort.orders[index].show = true;
     console.log(sort.orders[index].show);
 
   };
   //Появление Input панели в Клиенте
   sort.customerInputHide = false;
-  sort.customerInput = function (index) {
+  sort.customerInput = function (order) {
+    let index = order.id - 1;
     sort.orders[index].show = true;
   };
   //Появление Input панели в Менеджере
   sort.managerInputHide = false;
-  sort.managerInput = function (index) {
+  sort.managerInput = function (order) {
+    let index = order.id - 1;
    sort.orders[index].show = true;
   };
   // Появление Select панели в статусе
   sort.statusInputHide = false;
-  sort.statusInput = function (index) {
+  sort.statusInput = function (order) {
+    let index = order.id - 1;
     sort.orders[index].show = true;
   };
   //Появление Input панели в Сумме
   sort.summInputHide = false;
-  sort.summInput = function (index) {
+  sort.summInput = function (order) {
+    let index = order.id - 1;
     sort.orders[index].show = true;
   };
   //Кнопка добавить/Изменить
