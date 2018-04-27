@@ -59,9 +59,22 @@ app.controller('sortController', function () {
   sort.openOrder = function (order) {
     sort.order = order;
     sort.addbtn = false;
-    console.log(sort.addbtn);
+    console.log(sort.order);
+
+    let number = document.getElementById ("test-form-Number");
+    number.value = sort.order.number;
+    console.log (number.value);
+
+    sort.edit = function (){
+
+       let index = order.id - 1;
+       sort.orders[index].number = number.value;
+    console.log (sort.orders[index].number);
+    };
 
   };
+
+
   //Кнопка отмены
   sort.cancel = function () {
     sort.order = undefined;
