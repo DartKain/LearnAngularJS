@@ -168,15 +168,15 @@
             </div>
             <div class="form-group">
               <label for="test-form-Customer">Покупатель</label>
-              <input type="text" class="form-control" ng-model="vm.order.customer" id="test-form-Customer" placeholder="Покупатель">
+              <input type="text" class="form-control"  id="test-form-Customer" placeholder="Покупатель">
             </div>
             <div class="form-group">
               <label for="test-form-Manager">Менеджер</label>
-              <input type="text" class="form-control" ng-model="vm.order.manager" id="test-form-Manager" placeholder="Менеджер">
+              <input type="text" class="form-control"  id="test-form-Manager" placeholder="Менеджер">
             </div>
             <div class="form-group">
               <label for="test-form-Price">Статус заказа</label>
-              <select class="form-control" id="test-form-Status" type="text" ng-model="vm.order.status" placeholder="Статус заказа">
+              <select class="form-control" id="test-form-Status" type="text"  placeholder="Статус заказа">
                   <option value="Выполнен">Выполнен</option>
                   <option value="В обработке">В обработке</option>
                   <option value="Отказ">Отказ</option>
@@ -184,7 +184,7 @@
             </div>
             <div class="form-group">
               <label for="test-form-Price">Сумма</label>
-              <input type="number" class="form-control" ng-model="vm.order.summ" id="test-form-Price" placeholder="Сумма">
+              <input type="number" class="form-control" id="test-form-Price" placeholder="Сумма">
             </div>
             <button type="submit" class="btn btn-primary" id="button" ng-click="vm.saveEdited()" ng-show="vm.addbtn">Добавить</button>
             <button type="submit" class="btn btn-primary" id="button" ng-click="vm.edit()" ng-hide="vm.addbtn">Изменить</button>

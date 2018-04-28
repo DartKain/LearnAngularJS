@@ -63,12 +63,23 @@ app.controller('sortController', function () {
 
     let number = document.getElementById ("test-form-Number");
     number.value = sort.order.number;
-    console.log (number.value);
+    let customer = document.getElementById ("test-form-Customer");
+    customer.value = sort.order.customer;
+    let manager = document.getElementById ("test-form-Manager");
+    manager.value = sort.order.manager;
+    let status =  document.getElementById ("test-form-Status");
+    status.value = sort.order.status;
+    let summ = document.getElementById (id="test-form-Price");
+    summ.value = sort.order.summ;
 
     sort.edit = function (){
 
-       let index = order.id - 1;
-       sort.orders[index].number = number.value;
+    let index = order.id - 1;
+    sort.orders[index].number = number.value;
+    sort.orders[index].customer = customer.value;
+    sort.orders[index].manager = manager.value;
+    sort.orders[index].status = status.value;
+    sort.orders[index].summ = summ.value;
     console.log (sort.orders[index].number);
     };
 
