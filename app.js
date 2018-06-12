@@ -296,8 +296,6 @@ app.component('tablica', {
       }
 
     };
-
-
   },
   controllerAs: 'vm'
 });
