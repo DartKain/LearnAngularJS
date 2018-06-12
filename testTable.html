@@ -1,0 +1,58 @@
+<table class="table table-responsive table-hover" id="test-table" ng-keydown="vm.enter($event)">
+    <caption>Список заказов</caption>
+
+    <thead class="table-header">
+      <tr>
+        <th data-type="number"  ng-click="vm.sortTable ('number', vm.sortOrder = !vm.sortOrder)">Номер
+          <span ng-show="vm.sortType == 'number' && vm.sortOrder" class="fa fa-caret-down"></span>
+          <span ng-show="vm.sortType == 'number' && !vm.sortOrder" class="fa fa-caret-up"></span>
+        </th>
+        <th data-type="string" ng-click="vm.sortTable ('customer', vm.sortOrder = !vm.sortOrder )">Покупатель
+          <span ng-show="vm.sortType == 'customer' && vm.sortOrder" class="fa fa-caret-down"></span>
+          <span ng-show="vm.sortType == 'customer' && !vm.sortOrder" class="fa fa-caret-up"></span>
+        </th>
+        <th data-type="string" ng-click="vm.sortTable ('manager', vm.sortOrder = !vm.sortOrder )">Менеджер
+        <span ng-show="vm.sortType == 'manager' && vm.sortOrder" class="fa fa-caret-down"></span>
+          <span ng-show="vm.sortType == 'manager' && !vm.sortOrder" class="fa fa-caret-up"></span></th>
+        <th data-type="string" ng-click="vm.sortTable ('status', vm.sortOrder = !vm.sortOrder )">
+        Статус заказа
+        <span ng-show="vm.sortType == 'status' && vm.sortOrder" class="fa fa-caret-down"></span>
+          <span ng-show="vm.sortType == 'status' && !vm.sortOrder" class="fa fa-caret-up"></span></th>
+        <th data-type="number" ng-click="vm.sortTable ('summ', vm.sortOrder = !vm.sortOrder )">        Сумма
+        <span ng-show="vm.sortType == 'summ' && vm.sortOrder" class="fa fa-caret-down"></span>
+          <span ng-show="vm.sortType == 'summ' && !vm.sortOrder" class="fa fa-caret-up"></span></th>
+      </tr>
+      <tr></tr>
+      <tr></tr>
+    </thead>
+    <tbody id="test-body">
+      <tr ng-repeat="order in vm.orders" ng-class="order.class">
+        <td ng-click="vm.inputShow(order)">
+          <span ng-hide="order.show">{{order.number}}</span>
+          <input class="form-control" ng-show="order.show" type="number" ng-blur="order.show = false" ng-model="order.number">
+        </td>
+        <td ng-click="vm.inputShow(order)">
+          <span ng-hide="order.show">{{order.customer}}</span>
+          <input class="form-control" ng-show="order.show" type="text" ng-blur="order.show = false" ng-model="order.customer">
+        </td>
+        <td ng-click="vm.inputShow(order)">
+          <span ng-hide="order.show">{{order.manager}}</span>
+          <input class="form-control" ng-show="order.show" type="text" ng-blur="order.show = false" ng-model="order.manager">
+        </td>
+        <td ng-click="vm.inputShow(order)">
+          <span ng-hide="order.show">{{order.status}}</span>
+          <select class="form-control" ng-show="order.show" type="text" ng-blur="order.show = false" ng-model="order.status">
+            <option value="Выполнен">Выполнен</option>
+            <option value="В обработке">В обработке</option>
+            <option value="Отказ">Отказ</option>
+
+          </select>
+        </td>
+        <td ng-click="vm.inputShow(order)">
+          <span ng-hide="order.show">{{order.summ}}</span>
+          <input class="form-control" ng-show="order.show" type="number" ng-blur="order.show = false" ng-model="order.summ"></td>
+        <td><a href="#" ng-click="vm.openOrder(order)">Edit</a></td>
+        <td><a href="#" ng-click="vm.remove(order)">Delete</a> </td>
+      </tr>
+    </tbody>
+  </table>

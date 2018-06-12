@@ -4,3 +4,7 @@ td {
   text-overflow: ellipsis;
   max-width: 20ch;
 }
+.arrow-selected {
+   background-color:  #ededed;
+
+}
