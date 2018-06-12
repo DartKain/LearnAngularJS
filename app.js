@@ -169,7 +169,6 @@ app.component('tablica', {
           sort.orders = $filter('orderBy')(sort.orders, 'summ', sortOrder);
           sort.sortType = 'summ';
           break;
-
       }
     };
 
