@@ -1,8 +1,9 @@
-<form id="testForm" name="testForm" ng-show = 'vm.order'>
+<form id="testForm" name="testForm" ng-show = 'formCtrl.order'>
             <div class="form-row">
              <div class="form-group col-sm-1">
                <label for="test-form-Number">Номер заказа</label>
-              <input type="number" class="form-control" id="test-form-Number" name="testFormNumber" placeholder="Номер заказа">
+              <input type="number" class="form-control" id="test-form-Number" name="testFormNumber" placeholder="Номер заказа"
+              ng-model = 'formCtrl.formOrder.number'>
              </div>
 
              <div class="form-group col-sm-2">
@@ -31,8 +32,8 @@
               <input type="number" class="form-control" id="test-form-Price" placeholder="Сумма">
               </div>
             </div>
-            <button type="submit" class="btn btn-primary" id="button" ng-click="vm.saveEdited()" ng-show="vm.addbtn">Добавить</button>
-            <button type="submit" class="btn btn-primary" id="button" ng-click="vm.edit()" ng-hide="vm.addbtn">Изменить</button>
-            <button type="button" class="btn btn-primary" id="button" ng-click="vm.cancel()">Отмена</button>
+            <button type="submit" class="btn btn-primary" id="button" ng-click="formCtrl.saveEdited()" ng-show="formCtrl.addbtn">Добавить</button>
+            <button type="submit" class="btn btn-primary" id="button" ng-click="formCtrl.edit()" ng-hide="formCtrl.addbtn">Изменить</button>
+            <button type="button" class="btn btn-primary" id="button" ng-click="formCtrl.cancel()">Отмена</button>
           </form>
-            <p>Order: {{vm.order}}</p>
+            <p>Order: {{formCtrl.formOrder}}</p>

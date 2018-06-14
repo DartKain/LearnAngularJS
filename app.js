@@ -86,18 +86,19 @@ app.controller('mainCtrl', function(){
 app.component('forma', {
   templateUrl: 'form.html',
   bindings: {
-    order: '=',
+    order: '<',
     addbtn: '='
   },
   controller: function () {
     var sort = this;
-    sort.orders = data;
 
-    let number = document.getElementById("test-form-Number");
-    let customer = document.getElementById("test-form-Customer");
-    let manager = document.getElementById("test-form-Manager");
-    let status = document.getElementById("test-form-Status");
-    let summ = document.getElementById("test-form-Price");
+    sort.formOrder.number = order.number;
+
+//    let number = document.getElementById("test-form-Number");
+//    let customer = document.getElementById("test-form-Customer");
+//    let manager = document.getElementById("test-form-Manager");
+//    let status = document.getElementById("test-form-Status");
+//    let summ = document.getElementById("test-form-Price");
 
     //Кнопка отмены
     sort.cancel = function () {
@@ -127,7 +128,7 @@ app.component('forma', {
 
     };
   },
-  controllerAs: 'vm'
+  controllerAs: 'formCtrl'
 
 });
 app.component('tablica', {
@@ -189,16 +190,16 @@ app.component('tablica', {
       sort.order = order;
       sort.addbtn = false;
       console.log(sort.order);
-      let number = document.getElementById("test-form-Number");
-      number.value = sort.order.number;
-      let customer = document.getElementById("test-form-Customer");
-      customer.value = sort.order.customer;
-      let manager = document.getElementById("test-form-Manager");
-      manager.value = sort.order.manager;
-      let status = document.getElementById("test-form-Status");
-      status.value = sort.order.status;
-      let summ = document.getElementById(id = "test-form-Price");
-      summ.value = sort.order.summ;
+//      let number = document.getElementById("test-form-Number");
+//      number.value = sort.order.number;
+//      let customer = document.getElementById("test-form-Customer");
+//      customer.value = sort.order.customer;
+//      let manager = document.getElementById("test-form-Manager");
+//      manager.value = sort.order.manager;
+//      let status = document.getElementById("test-form-Status");
+//      status.value = sort.order.status;
+//      let summ = document.getElementById(id = "test-form-Price");
+//      summ.value = sort.order.summ;
     };
 
 
