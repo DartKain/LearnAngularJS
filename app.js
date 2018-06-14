@@ -92,7 +92,6 @@ app.component('forma', {
   controller: function () {
     var sort = this;
 
-    sort.formOrder.number = order.number;
 
 //    let number = document.getElementById("test-form-Number");
 //    let customer = document.getElementById("test-form-Customer");
