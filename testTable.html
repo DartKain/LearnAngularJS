@@ -51,7 +51,7 @@
         <td ng-click="vm.inputShow(order)">
           <span ng-hide="order.show">{{order.summ}}</span>
           <input class="form-control" ng-show="order.show" type="number" ng-blur="order.show = false" ng-model="order.summ"></td>
-        <td><a href="#" ng-click="vm.openOrder(order)">Edit</a></td>
+        <td><a href="#" ng-click="vm.openOrder(order)" data-toggle="modal" data-target=".bd-example-modal-lg">Edit</a></td>
         <td><a href="#" ng-click="vm.remove(order)">Delete</a> </td>
       </tr>
     </tbody>

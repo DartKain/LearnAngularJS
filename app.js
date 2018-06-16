@@ -53,26 +53,26 @@ let type = [{
                  }]
 
 var app = angular.module('sortApp', [])
-app.controller('mainCtrl', function(){
+app.controller('mainCtrl', function () {
   var sort = this;
   sort.orders = data;
   sort.order = undefined;
   sort.key = undefined;
   sort.enter = function (event) {
 
-      sort.key = event.keyCode;
+    sort.key = event.keyCode;
   };
 
-     //Кнопка Добавить
-    sort.add = function () {
-      let neworder = {
-        id: -1
-      };
-      sort.order = neworder;
-      sort.addbtn = true;
-      console.log(neworder);
-      console.log(sort.addbtn);
+  //Кнопка Добавить
+  sort.add = function () {
+    let neworder = {
+      id: -1
     };
+    sort.order = neworder;
+    sort.addbtn = true;
+    console.log(neworder);
+    console.log(sort.addbtn);
+  };
 
   sort.colType = type;
 
@@ -81,23 +81,42 @@ app.controller('mainCtrl', function(){
 
 
 
-})
+});
+
+app.component('modalForm', {
+  template: `
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <forma order = 'vm.order'  addbtn = 'vm.addbtn'></forma>
+      </div>
+  </div>
+</div>
+`,
+  bindings: {
+    order: '=',
+    addbtn: '=',
+  },
+  controller: function () {
+
+  }
+});
 
 app.component('forma', {
   templateUrl: 'form.html',
   bindings: {
-    order: '<',
-    addbtn: '='
+    order: '=',
+    addbtn: '=',
   },
   controller: function () {
     var sort = this;
 
 
-//    let number = document.getElementById("test-form-Number");
-//    let customer = document.getElementById("test-form-Customer");
-//    let manager = document.getElementById("test-form-Manager");
-//    let status = document.getElementById("test-form-Status");
-//    let summ = document.getElementById("test-form-Price");
+    //    let number = document.getElementById("test-form-Number");
+    //    let customer = document.getElementById("test-form-Customer");
+    //    let manager = document.getElementById("test-form-Manager");
+    //    let status = document.getElementById("test-form-Status");
+    //    let summ = document.getElementById("test-form-Price");
 
     //Кнопка отмены
     sort.cancel = function () {
@@ -107,7 +126,7 @@ app.component('forma', {
     //Добавление новой строки в таблицу
     sort.saveEdited = function () {
       let order = {};
-      order.number = number.value;
+      order.number = order.number.value;
       order.customer = customer.value;
       order.manager = manager.value;
       order.status = status.value;
@@ -118,8 +137,9 @@ app.component('forma', {
 
 
     //Сохранение изменений в строке
-    sort.edit = function () {
-      sort.orders[sort.order.id - 1].number = number.value;
+    sort.edit = function (order) {
+      console.log(order);
+      sort.orders[sort.order.id - 1].number = order.value;
       sort.orders[sort.order.id - 1].customer = customer.value;
       sort.orders[sort.order.id - 1].manager = manager.value;
       sort.orders[sort.order.id - 1].status = status.value;
@@ -136,7 +156,7 @@ app.component('tablica', {
     order: '=',
     addbtn: '=',
     openorder: '&',
-    key: '='
+    key: '=',
   },
   controller: function ($filter) {
     var sort = this;
@@ -184,21 +204,21 @@ app.component('tablica', {
       console.log(sort.orders[index].number);
     };
 
-      //Клик по Edit
+    //Клик по Edit
     sort.openOrder = function (order) {
       sort.order = order;
       sort.addbtn = false;
       console.log(sort.order);
-//      let number = document.getElementById("test-form-Number");
-//      number.value = sort.order.number;
-//      let customer = document.getElementById("test-form-Customer");
-//      customer.value = sort.order.customer;
-//      let manager = document.getElementById("test-form-Manager");
-//      manager.value = sort.order.manager;
-//      let status = document.getElementById("test-form-Status");
-//      status.value = sort.order.status;
-//      let summ = document.getElementById(id = "test-form-Price");
-//      summ.value = sort.order.summ;
+      //      number.value = sort.order.number;
+      //      let customer = document.getElementById("test-form-Customer");
+      //      customer.value = sort.order.customer;
+      //      let manager = document.getElementById("test-form-Manager");
+      //      manager.value = sort.order.manager;
+      //      let status = document.getElementById("test-form-Status");
+      //      status.value = sort.order.status;
+      //      let summ = document.getElementById(id = "test-form-Price");
+      //      summ.value = sort.order.summ;
+      return order;
     };
 
 
@@ -206,8 +226,6 @@ app.component('tablica', {
     sort.cancel = function () {
       sort.order = undefined;
     };
-
-
 
     //Кнопка удалить
     sort.remove = function (order) {
@@ -228,19 +246,7 @@ app.component('tablica', {
     };
 
 
-    //Кнопка добавить в форме
-    sort.saveEdited = function () {
-      let order = {};
-      order.number = sort.order.number;
-      order.customer = sort.order.customer;
-      order.manager = sort.order.manager;
-      order.status = sort.order.status;
-      order.summ = sort.order.summ;
-      console.log(order);
-      sort.orders.push(order);
-
-    };
-      // Навигация по стрелкам
+    // Навигация по стрелкам
     let position = -1;
     sort.arrowDown = function () {
       if (position < sort.orders.length - 1) {

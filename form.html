@@ -1,39 +1,39 @@
-<form id="testForm" name="testForm" ng-show = 'formCtrl.order'>
-            <div class="form-row">
-             <div class="form-group col-sm-1">
+<form id="testForm" name="testForm">
+
+             <div class="form-group">
                <label for="test-form-Number">Номер заказа</label>
               <input type="number" class="form-control" id="test-form-Number" name="testFormNumber" placeholder="Номер заказа"
-              ng-model = 'formCtrl.order.number'>
+              value="{{formCtrl.order.number}}">
              </div>
 
-             <div class="form-group col-sm-2">
+             <div class="form-group">
                <label for="test-form-Customer">Покупатель</label>
-              <input type="text" class="form-control"  id="test-form-Customer" placeholder="Покупатель">
+              <input type="text" class="form-control"  id="test-form-Customer" placeholder="Покупатель" value="{{formCtrl.order.customer}}">
              </div>
 
 
-             <div class="form-group col-sm-2">
+             <div class="form-group">
                <label for="test-form-Manager">Менеджер</label>
-              <input type="text" class="form-control"  id="test-form-Manager" placeholder="Менеджер">
+              <input type="text" class="form-control"  id="test-form-Manager" placeholder="Менеджер" value="{{formCtrl.order.manager}}">
                </div>
 
-            </div>
-            <div class="form-row">
-             <div class="form-group col-sm-2">
+
+
+             <div class="form-group">
               <label for="test-form-Price">Статус заказа</label>
               <select class="form-control" id="test-form-Status" type="text"  placeholder="Статус заказа">
-                  <option value="Выполнен">Выполнен</option>
-                  <option value="В обработке">В обработке</option>
-                  <option value="Отказ">Отказ</option>
+                  <option value="Выполнен">{{formCtrl.order.status}}</option>
+                  <option value="В обработке">{{formCtrl.order.status}}</option>
+                  <option value="Отказ">{{formCtrl.order.status}}</option>
               </select>
             </div>
-             <div class="form-group col-sm-3">
+             <div class="form-group">
               <label for="test-form-Price">Сумма</label>
-              <input type="number" class="form-control" id="test-form-Price" placeholder="Сумма">
+              <input type="number" class="form-control" id="test-form-Price" placeholder="Сумма" value="{{formCtrl.order.summ}}">
               </div>
-            </div>
+
             <button type="submit" class="btn btn-primary" id="button" ng-click="formCtrl.saveEdited()" ng-show="formCtrl.addbtn">Добавить</button>
-            <button type="submit" class="btn btn-primary" id="button" ng-click="formCtrl.edit()" ng-hide="formCtrl.addbtn">Изменить</button>
+            <button type="submit" class="btn btn-primary" id="button" ng-click="formCtrl.edit(formCtrl.order)" ng-hide="formCtrl.addbtn">Изменить</button>
             <button type="button" class="btn btn-primary" id="button" ng-click="formCtrl.cancel()">Отмена</button>
           </form>
-            <p>Order: {{formCtrl.formOrder}}</p>
+            <p>Order: {{formCtrl.order}}</p>
