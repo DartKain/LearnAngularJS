@@ -59,7 +59,7 @@
       <div class="col-sm">
 
         <!--   Кнопки Добавить/Удалить-->
-        <button type="button" class="btn btn-primary" id="button" ng-click="vm.add()">Добавить</button>
+        <button type="button" class="btn btn-primary" id="button" ng-click="vm.add()" data-toggle="modal" data-target=".bd-example-modal-lg">Добавить</button>
 
 
         <!--   Кнопки Добавить/Удалить-->
@@ -93,7 +93,7 @@
         <!--Форма для сортировки-->
 
         <!--Форма для изменения таблицы-->
-        <modal-form order = 'vm.order' formorder = 'vm.formorder'  addbtn = 'vm.addbtn' ></modal-form>
+        <modal-form order = 'vm.order' formorder = 'vm.formorder'  addbtn = 'vm.addbtn' orders = 'vm.orders'></modal-form>
         <!--Форма для изменения таблицы-->
       </div>
     </div>
@@ -102,7 +102,7 @@
     <!-- Таблица -->
     <div class="row">
       <div class="col-xl">
-          <tablica order = 'vm.order' formorder = 'vm.formorder' addbtn = 'vm.addbtn' openorder = 'vm.openOrder(order)' key = 'vm.key' bla = 'vm.bla'></tablica>
+          <tablica order = 'vm.order' formorder = 'vm.formorder' addbtn = 'vm.addbtn' openorder = 'vm.openOrder(order)' key = 'vm.key' bla = 'vm.bla' orders = 'vm.orders'></tablica>
       </div>
     </div>
     <!--Таблица -->

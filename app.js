@@ -91,7 +91,7 @@ app.component('modalForm', {
       <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-        <forma order = 'vm.order'  addbtn = 'vm.addbtn' formorder = 'vm.formorder'></forma>
+        <forma order = 'vm.order'  addbtn = 'vm.addbtn' formorder = 'vm.formorder' orders = 'vm.orders'></forma>
       </div>
   </div>
 </div>
@@ -99,7 +99,8 @@ app.component('modalForm', {
   bindings: {
     order: '=',
     addbtn: '=',
-    formorder: '='
+    formorder: '=',
+    orders: '='
   },
   controller: function () {
 
@@ -112,7 +113,8 @@ app.component('forma', {
   bindings: {
     order: '<',
     addbtn: '=',
-    formorder: '='
+    formorder: '=',
+    orders: '='
   },
   controller: function () {
     var sort = this;
@@ -138,6 +140,7 @@ app.component('forma', {
       order.status = sort.formorder.status;
       order.summ = sort.formorder.summ;
       console.log(order);
+      console.log(sort.orders);
       sort.orders.push(order);
     };
 
@@ -173,7 +176,7 @@ app.component('tablica', {
     addbtn: '=',
     openorder: '&',
     key: '=',
-    bla: '='
+    orders: '='
   },
   controller: function ($filter) {
     var sort = this;
