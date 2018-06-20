@@ -25,7 +25,7 @@
 
 </head>
 
-<body ng-app="sortApp" ng-controller="mainCtrl as vm"  openorder = 'vm.openOrder(order)'>
+<body ng-app="sortApp" ng-controller="mainCtrl as vm"  openorder = 'vm.openOrder(order, formOrder)'>
 
   <!-- Навигация -->
 
@@ -93,7 +93,7 @@
         <!--Форма для сортировки-->
 
         <!--Форма для изменения таблицы-->
-        <modal-form order = 'vm.order'  addbtn = 'vm.addbtn'></modal-form>
+        <modal-form order = 'vm.order' formorder = 'vm.formorder'  addbtn = 'vm.addbtn' ></modal-form>
         <!--Форма для изменения таблицы-->
       </div>
     </div>
@@ -102,10 +102,11 @@
     <!-- Таблица -->
     <div class="row">
       <div class="col-xl">
-        <tablica order = 'vm.order' addbtn = 'vm.addbtn' openorder = 'vm.openOrder(order)' key = 'vm.key' number = 'vm.number'></tablica>
+          <tablica order = 'vm.order' formorder = 'vm.formorder' addbtn = 'vm.addbtn' openorder = 'vm.openOrder(order)' key = 'vm.key' bla = 'vm.bla'></tablica>
       </div>
     </div>
     <!--Таблица -->
+    formOrder: {{vm.formorder}}
 
   </div>
 

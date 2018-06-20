@@ -55,9 +55,12 @@ let type = [{
 var app = angular.module('sortApp', [])
 app.controller('mainCtrl', function () {
   var sort = this;
+
   sort.orders = data;
   sort.order = undefined;
+  sort.formorder = undefined;
   sort.key = undefined;
+  sort.bla = undefined;
   sort.enter = function (event) {
 
     sort.key = event.keyCode;
@@ -88,7 +91,7 @@ app.component('modalForm', {
       <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-        <forma order = 'vm.order'  addbtn = 'vm.addbtn'></forma>
+        <forma order = 'vm.order'  addbtn = 'vm.addbtn' formorder = 'vm.formorder'></forma>
       </div>
   </div>
 </div>
@@ -96,21 +99,24 @@ app.component('modalForm', {
   bindings: {
     order: '=',
     addbtn: '=',
+    formorder: '='
   },
   controller: function () {
 
-  }
+  },
+  controllerAs: 'vm'
 });
 
 app.component('forma', {
   templateUrl: 'form.html',
   bindings: {
-    order: '=',
+    order: '<',
     addbtn: '=',
+    formorder: '='
   },
   controller: function () {
     var sort = this;
-
+    sort.number = undefined;
 
     //    let number = document.getElementById("test-form-Number");
     //    let customer = document.getElementById("test-form-Customer");
@@ -126,11 +132,11 @@ app.component('forma', {
     //Добавление новой строки в таблицу
     sort.saveEdited = function () {
       let order = {};
-      order.number = order.number.value;
-      order.customer = customer.value;
-      order.manager = manager.value;
-      order.status = status.value;
-      order.summ = summ.value;
+      order.number = sort.formorder.number;
+      order.customer = sort.formorder.customer;
+      order.manager = sort.formorder.manager;
+      order.status = sort.formorder.status;
+      order.summ = sort.formorder.summ;
       console.log(order);
       sort.orders.push(order);
     };
@@ -139,12 +145,21 @@ app.component('forma', {
     //Сохранение изменений в строке
     sort.edit = function (order) {
       console.log(order);
-      sort.orders[sort.order.id - 1].number = order.value;
-      sort.orders[sort.order.id - 1].customer = customer.value;
-      sort.orders[sort.order.id - 1].manager = manager.value;
-      sort.orders[sort.order.id - 1].status = status.value;
-      sort.orders[sort.order.id - 1].summ = summ.value;
-
+      if (sort.formorder.number != undefined) {
+        sort.order.number = sort.formorder.number;
+      };
+      if (sort.formorder.customer != undefined) {
+      sort.order.customer = sort.formorder.customer;
+      };
+      if (sort.formorder.manager != undefined) {
+      sort.order.manager = sort.formorder.manager;
+      };
+      if (sort.formorder.status != undefined) {
+      sort.order.status = sort.formorder.status;
+      };
+      if (sort.formorder.summ != undefined) {
+      sort.order.summ = sort.formorder.summ;
+      };
     };
   },
   controllerAs: 'formCtrl'
@@ -154,9 +169,11 @@ app.component('tablica', {
   templateUrl: 'testTable.html',
   bindings: {
     order: '=',
+    formorder: '=',
     addbtn: '=',
     openorder: '&',
     key: '=',
+    bla: '='
   },
   controller: function ($filter) {
     var sort = this;
@@ -218,7 +235,6 @@ app.component('tablica', {
       //      status.value = sort.order.status;
       //      let summ = document.getElementById(id = "test-form-Price");
       //      summ.value = sort.order.summ;
-      return order;
     };
 
 
