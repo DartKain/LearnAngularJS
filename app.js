@@ -59,11 +59,10 @@ app.controller('mainCtrl', function () {
   sort.orders = data;
   sort.order = undefined;
   sort.formorder = undefined;
-  sort.key = undefined;
-  sort.bla = undefined;
+  sort.event = undefined;
   sort.enter = function (event) {
 
-    sort.key = event.keyCode;
+    sort.event = event;
   };
 
   //Кнопка Добавить
@@ -111,7 +110,7 @@ app.component('modalForm', {
 app.component('forma', {
   templateUrl: 'form.html',
   bindings: {
-    order: '<',
+    order: '=',
     addbtn: '=',
     formorder: '=',
     orders: '='
@@ -120,15 +119,9 @@ app.component('forma', {
     var sort = this;
     sort.number = undefined;
 
-    //    let number = document.getElementById("test-form-Number");
-    //    let customer = document.getElementById("test-form-Customer");
-    //    let manager = document.getElementById("test-form-Manager");
-    //    let status = document.getElementById("test-form-Status");
-    //    let summ = document.getElementById("test-form-Price");
-
     //Кнопка отмены
     sort.cancel = function () {
-      sort.order = undefined;
+      sort.formorder = undefined;
     };
 
     //Добавление новой строки в таблицу
@@ -152,16 +145,16 @@ app.component('forma', {
         sort.order.number = sort.formorder.number;
       };
       if (sort.formorder.customer != undefined) {
-      sort.order.customer = sort.formorder.customer;
+        sort.order.customer = sort.formorder.customer;
       };
       if (sort.formorder.manager != undefined) {
-      sort.order.manager = sort.formorder.manager;
+        sort.order.manager = sort.formorder.manager;
       };
       if (sort.formorder.status != undefined) {
-      sort.order.status = sort.formorder.status;
+        sort.order.status = sort.formorder.status;
       };
       if (sort.formorder.summ != undefined) {
-      sort.order.summ = sort.formorder.summ;
+        sort.order.summ = sort.formorder.summ;
       };
     };
   },
@@ -175,10 +168,10 @@ app.component('tablica', {
     formorder: '=',
     addbtn: '=',
     openorder: '&',
-    key: '=',
+    event: '=',
     orders: '='
   },
-  controller: function ($filter) {
+  controller: function ($filter, $scope) {
     var sort = this;
     sort.orders = data;
     sort.colType = type;
@@ -212,32 +205,11 @@ app.component('tablica', {
       }
     };
 
-
-    // Функция клика по Изменить
-    sort.edit = function (order) {
-      let index = order.id - 1;
-      sort.orders[index].number = number.value;
-      sort.orders[index].customer = customer.value;
-      sort.orders[index].manager = manager.value;
-      sort.orders[index].status = status.value;
-      sort.orders[index].summ = summ.value;
-      console.log(sort.orders[index].number);
-    };
-
     //Клик по Edit
     sort.openOrder = function (order) {
       sort.order = order;
       sort.addbtn = false;
       console.log(sort.order);
-      //      number.value = sort.order.number;
-      //      let customer = document.getElementById("test-form-Customer");
-      //      customer.value = sort.order.customer;
-      //      let manager = document.getElementById("test-form-Manager");
-      //      manager.value = sort.order.manager;
-      //      let status = document.getElementById("test-form-Status");
-      //      status.value = sort.order.status;
-      //      let summ = document.getElementById(id = "test-form-Price");
-      //      summ.value = sort.order.summ;
     };
 
 
@@ -294,9 +266,35 @@ app.component('tablica', {
       console.log(position);
       return position;
     };
-    sort.enter = function (event) {
+
+    $scope.$watch('vm.event', function(event){
       let key = event.keyCode;
-      let order = sort.orders[position];
+            let order = sort.orders[position];
+           switch (key) {
+        case 38:
+          sort.arrowUp();
+
+          break;
+        case 40:
+          sort.arrowDown();
+
+          break;
+        case 13:
+
+          sort.openOrder(order);
+          console.log(key);
+          break;
+        case 46:
+          sort.remove(order);
+          break;
+        case 27:
+          sort.cancel();
+          break;
+      }
+    });
+
+    sort.enter = function (key) {
+
 
       switch (key) {
         case 38:

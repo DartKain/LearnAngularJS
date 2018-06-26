@@ -7,16 +7,17 @@
               name="testFormNumber"
               placeholder="Номер заказа"
               ng-model = 'formCtrl.formorder.number'
-              value = {{formCtrl.order.number}}>
+              value = '{{formCtrl.order.number}}'>
              </div>
 
              <div class="form-group">
                <label for="test-form-Customer">Покупатель</label>
               <input type="text" class="form-control"
               id="test-form-Customer"
+              name = "testFormCustomer"
               placeholder="Покупатель"
-              ng-model = 'formCtrl.formorder.customer'
-              value = '{{formCtrl.order.customer}}'>
+              ng-model = "formCtrl.formorder.customer"
+              value = {{formCtrl.order.customer}}>
              </div>
 
              <div class="form-group">
