@@ -87,7 +87,7 @@ app.controller('mainCtrl', function () {
 
 app.component('modalForm', {
   template: `
-      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div id = 'myModal' class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
         <forma order = 'vm.order'  addbtn = 'vm.addbtn' formorder = 'vm.formorder' orders = 'vm.orders'></forma>
@@ -122,6 +122,7 @@ app.component('forma', {
     //Кнопка отмены
     sort.cancel = function () {
       sort.formorder = undefined;
+      $('#myModal').modal('hide')
     };
 
     //Добавление новой строки в таблицу
@@ -156,6 +157,7 @@ app.component('forma', {
       if (sort.formorder.summ != undefined) {
         sort.order.summ = sort.formorder.summ;
       };
+      $('#myModal').modal('hide')
     };
   },
   controllerAs: 'formCtrl'
@@ -209,6 +211,11 @@ app.component('tablica', {
     sort.openOrder = function (order) {
       sort.order = order;
       sort.addbtn = false;
+      $('#test-form-Number').val(sort.order.number);
+      $('#test-form-Customer').val(sort.order.customer);
+      $('#test-form-Manager').val(sort.order.manager);
+      $('#test-form-Status').val(sort.order.status);
+      $('#test-form-Price').val(sort.order.summ);
       console.log(sort.order);
     };
 
@@ -280,7 +287,7 @@ app.component('tablica', {
 
           break;
         case 13:
-
+               $('#myModal').modal()
           sort.openOrder(order);
           console.log(key);
           break;

@@ -6,8 +6,7 @@
               id="test-form-Number"
               name="testFormNumber"
               placeholder="Номер заказа"
-              ng-model = 'formCtrl.formorder.number'
-              value = '{{formCtrl.order.number}}'>
+              ng-model = 'formCtrl.formorder.number'>
              </div>
 
              <div class="form-group">
@@ -16,8 +15,7 @@
               id="test-form-Customer"
               name = "testFormCustomer"
               placeholder="Покупатель"
-              ng-model = "formCtrl.formorder.customer"
-              value = {{formCtrl.order.customer}}>
+              ng-model = "formCtrl.formorder.customer">
              </div>
 
              <div class="form-group">
@@ -25,8 +23,7 @@
                 <input type="text" class="form-control"
                 id="test-form-Manager"
                 placeholder="Менеджер"
-                ng-model = 'formCtrl.formorder.manager'
-                value = '{{formCtrl.order.manager}}'>
+                ng-model = 'formCtrl.formorder.manager'>
              </div>
 
              <div class="form-group">
@@ -42,12 +39,23 @@
             </div>
              <div class="form-group">
               <label for="test-form-Price">Сумма</label>
-              <input type="number" class="form-control" id="test-form-Price" placeholder="Сумма"  ng-model = 'formCtrl.formorder.summ'>
+              <input type="number" class="form-control"
+              id="test-form-Price"
+              placeholder="Сумма"
+              ng-model = 'formCtrl.formorder.summ'>
               </div>
 
-            <button type="submit" class="btn btn-primary" id="button" ng-click="formCtrl.saveEdited()" ng-show="formCtrl.addbtn">Добавить</button>
-            <button type="submit" class="btn btn-primary" id="button" ng-click="formCtrl.edit(formCtrl.order)" ng-hide="formCtrl.addbtn">Изменить</button>
-            <button type="button" class="btn btn-primary" id="button" ng-click="formCtrl.cancel()">Отмена</button>
+            <button type="submit" class="btn btn-primary"
+            id="button"
+            ng-click="formCtrl.saveEdited()"
+            ng-show="formCtrl.addbtn">Добавить</button>
+            <button type="submit" class="btn btn-primary"
+            id="button"
+            ng-click="formCtrl.edit(formCtrl.order)"
+            ng-hide="formCtrl.addbtn">Изменить</button>
+            <button type="button" class="btn btn-primary"
+            id="button"
+            ng-click="formCtrl.cancel()">Отмена</button>
           </form>
             <p>Order: {{formCtrl.order}}</p>
             <p>formOrder: {{formCtrl.formorder}}</p>
